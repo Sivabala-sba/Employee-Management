@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Roles</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h2 th:text="${role.id == null} ? 'Create Role' : 'Edit Role'"></h2>
+
+<form th:action="@{/roles/save}" th:object="${role}" method="post">
+  <input type="hidden" th:field="*{id}" />
+
+  <label>Role Name:</label>
+  <input type="text" th:field="*{name}" required /><br/>
+
+  <button type="submit">Save</button>
+  <a href="/roles">Cancel</a>
+</form>
+
+<hr/>
+
+<h3>All Roles</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Role Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="r : ${roles}">
+    <td th:text="${r.name}"></td>
+    <td>
+      <a th:href="@{'/roles/edit/' + ${r.id}}">Edit</a>
+      <a th:href="@{'/roles/delete/' + ${r.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

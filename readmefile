@@ -1,0 +1,83 @@
+Employee Management System ==========================
+
+This Employee Management System is a full-stack web application built using Spring Boot, Thymeleaf, and MySQL. It offers a clean, intuitive interface for managing employee records and job roles efficiently. Designed as a modular component for larger systems, it’s ideal for organizations looking to simplify staff administration.
+
+Features include dynamic filtering, role management, real-time date display, and auto-generated schema using Spring JPA and Lombok.
+
+Features
+-> Create, view, edit, and delete employee profiles
+-> Assign roles to employees, with full CRUD operations on roles
+-> Search and filter employees by name or role
+-> Display and manage employee contact info, salary, and joining date
+-> User-friendly layout with organized tables and forms
+-> Dynamic date/time header on the main page
+-> Database schema auto-created with JPA + Lombok
+
+
+Tech Stack
+-> Backend: Spring Boot, Spring MVC, Spring Data JPA
+-> Frontend: Thymeleaf, HTML5, CSS
+-> Database: MySQL
+-> Build Tool: Maven
+-> Utility: Lombok, Validation API
+-> Dev Tools (optional): Spring Boot DevTools
+
+
+Getting Started
+
+1. Clone the Repository
+
+git clone https://github.com/your-username/employee-management-system.git
+cd employee-management-system
+
+> Replace your-username with your actual GitHub username.
+
+2. Set Up the Database
+
+Make sure MySQL is running. Then create a new database:
+
+CREATE DATABASE employee_db;
+
+Open src/main/resources/application.properties and update with your DB credentials:
+
+spring.datasource.username=your_mysql_username
+spring.datasource.password=your_mysql_password
+
+3. Build and Run the Project
+
+Use the Maven wrapper to start the application:
+
+./mvnw spring-boot:run
+
+Or run EmployeeManagementApplication.java from your IDE.
+
+4. Access the Application
+
+Once the app is running, go to:
+
+http://localhost:8080/employees
+
+From there, you can view, create, and manage employees and roles through an intuitive interface.
+
+
+Project Structure Overview
+
+src/main/java/
+└── com/yourdomain/employeemanagement/
+    ├── controller/
+    ├── entity/
+    ├── repository/
+    ├── service/
+    └── EmployeeManagementApplication.java
+
+src/main/resources/
+├── templates/
+│   ├── index.html
+│   ├── employee_form.html
+│   └── role_form.html
+├── static/css/
+└── application.properties
+
+Acknowledgements
+
+Thanks to Spring Boot, Thymeleaf, and the open-source community for their powerful, elegant tools. And thank you for checking out this project — hope it proves useful!

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Management</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  <style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+
+    .header-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        flex-grow: 1;
+    }
+
+    .action-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .actions a {
+        margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div><a href="https://www.google.com">Home</a></div>
+  <div class="header-title">Employee Management</div>
+  <div th:text="${#dates.format(#dates.createNow(), 'dd MMMM yyyy HH:mm')}"></div>
+</header>
+
+<div class="action-bar">
+  <div><h2>Employee Details</h2></div>
+  <div>
+    <a href="/roles" style="margin-right:10px;">Manage Role</a>
+    <a href="/employees/create" style="margin-right:10px;">Create Employee Profile</a>
+    <form action="#" method="get" style="display:inline;">
+      <input type="text" name="name" placeholder="Search by name" />
+      <select name="roleId">
+        <option value="">All Roles</option>
+        <option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Full Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Emergency Contact</th>
+    <th>Role</th>
+    <th>Date of Joining</th>
+    <th>Salary</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="employee : ${employees}">
+    <td th:text="${employee.fullName}"></td>
+    <td th:text="${employee.phone}"></td>
+    <td th:text="${employee.email}"></td>
+    <td th:text="${employee.emergencyContact}"></td>
+    <td th:text="${employee.role.name}"></td>
+    <td th:text="${employee.dateOfJoining}"></td>
+    <td th:text="${employee.salary}"></td>
+    <td class="actions">
+      <a th:href="@{'/employees/edit/' + ${employee.id}}">Edit</a>
+      <a th:href="@{'/employees/delete/' + ${employee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
